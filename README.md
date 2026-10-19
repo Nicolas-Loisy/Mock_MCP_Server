@@ -50,29 +50,18 @@ Le projet est prêt pour un déploiement Docker sur Koyeb :
 - Le serveur lit `PORT` (toujours injecté par Koyeb) et bind sur `0.0.0.0`
 - Le health check par défaut de Koyeb est un simple **TCP** sur le port exposé → rien à configurer côté healthcheck
 
-Étapes (via CLI, après avoir push le repo sur GitHub ou une image sur un registry) :
+Repo : [github.com/Nicolas-Loisy/Mock_MCP_Server](https://github.com/Nicolas-Loisy/Mock_MCP_Server)
 
 ```bash
-# Option A - depuis un repo GitHub
 koyeb app init mock-mcp-server \
-  --git github.com/<user>/<repo> \
+  --git github.com/Nicolas-Loisy/Mock_MCP_Server \
   --git-branch main \
   --git-builder docker \
-  --ports 8000:http \
-  --routes /:8000
-
-# Option B - depuis une image Docker déjà poussée sur un registry
-docker build -t <registry>/mock-mcp-server .
-docker push <registry>/mock-mcp-server
-koyeb app init mock-mcp-server \
-  --docker <registry>/mock-mcp-server \
   --ports 8000:http \
   --routes /:8000
 ```
 
 Une fois déployé, le serveur sera accessible sur `https://<app>-<org>.koyeb.app/mcp`.
-
-> Le projet n'est pas encore un repo git (`git init` requis pour l'option A).
 
 ## Stack
 
